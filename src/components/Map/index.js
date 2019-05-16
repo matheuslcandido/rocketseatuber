@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-
 import MapView from 'react-native-maps';
-
 import { View } from 'react-native';
+
+import Search from './../Search';
 
 export default class Map extends Component {
     state = {
@@ -41,6 +41,7 @@ export default class Map extends Component {
                     showsUserLocation
                     loadingEnabled
                 />
+                <Search />
             </View>
         )
     }
