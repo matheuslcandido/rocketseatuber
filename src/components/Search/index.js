@@ -4,9 +4,11 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 
 export default class Search extends Component {
   render() {
+    const { onLocationSelected } = this.props;
+
     return <GooglePlacesAutocomplete
       placeholder="Para onde?"
-      onPress={() => {}}
+      onPress={onLocationSelected}
       query={{
         key: 'AIzaSyCKHn6Uj9qH_WZ2kGQjafpJ_NrW9wROXSc',
         language: 'pt'
