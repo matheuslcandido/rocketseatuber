@@ -8,7 +8,7 @@ import Directions from '../Directions';
 
 import markerImage from './../../assets/marker.png';
 
-import { LocationBox, LocationText } from './styles';
+import { LocationBox, LocationText, LocationTimeBox, LocationTimeText, LocationTimeTextSmall } from './styles';
 
 export default class Map extends Component {
   state = {
@@ -93,6 +93,19 @@ export default class Map extends Component {
                 coordinate={region}
                 anchor={{ x: 0, y: 0 }}
               >
+                <LocationBox>
+                  <LocationTimeBox>
+                    <LocationTimeText>
+                      20
+                    </LocationTimeText>
+                    <LocationTimeTextSmall>
+                      MIN
+                    </LocationTimeTextSmall>
+                  </LocationTimeBox>
+                  <LocationText>
+                    Av. Elias Mafuz
+                  </LocationText>
+                </LocationBox>
               </Marker>
             </Fragment>
           )}
