@@ -88,6 +88,12 @@ export default class Map extends Component {
                   </LocationText>
                 </LocationBox>
               </Marker>
+
+              <Marker
+                coordinate={region}
+                anchor={{ x: 0, y: 0 }}
+              >
+              </Marker>
             </Fragment>
           )}
         </MapView>
