@@ -8,6 +8,8 @@ import Directions from '../Directions';
 
 import markerImage from './../../assets/marker.png';
 
+import { LocationBox, LocationText } from './styles';
+
 export default class Map extends Component {
   state = {
     region: null,
@@ -79,7 +81,13 @@ export default class Map extends Component {
                 coordinate={destination}
                 anchor={{ x: 0, y: 0 }}
                 image={markerImage}
-              />
+              >
+                <LocationBox>
+                  <LocationText>
+                    {destination.title}
+                  </LocationText>
+                </LocationBox>
+              </Marker>
             </Fragment>
           )}
         </MapView>
