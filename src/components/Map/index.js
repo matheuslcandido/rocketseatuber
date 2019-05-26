@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import MapView, { Marker } from 'react-native-maps';
 import { View } from 'react-native';
 import { getPixelSize } from './../../utils';
+import Geocoder from 'react-native-geocoding';
 
 import Search from './../Search';
 import Directions from '../Directions';
@@ -10,17 +11,26 @@ import markerImage from './../../assets/marker.png';
 
 import { LocationBox, LocationText, LocationTimeBox, LocationTimeText, LocationTimeTextSmall } from './styles';
 
+Geocoder.init('AIzaSyCKHn6Uj9qH_WZ2kGQjafpJ_NrW9wROXSc');
+
 export default class Map extends Component {
   state = {
     region: null,
     destination: null,
     duration: null,
+    location: null,
   }
 
   async componentDidMount() {
     navigator.geolocation.getCurrentPosition(
-      ({ coords: { latitude, longitude } }) => {
+      async  ({ coords: { latitude, longitude } }) => {
+        const response = await Geocoder.from({ latitude, longitude });
+        const address = response.results[0].formatted_address;
+        const location = address.substring(0, address.indexOf(','));
+
+
         this.setState({
+          location,
           region: {
             latitude,
             longitude,
@@ -51,7 +61,7 @@ export default class Map extends Component {
   }
 
   render() {
-    const { region, destination, duration } = this.state;
+    const { region, destination, duration, location } = this.state;
 
     return (
       <View style={{ flex: 1 }}>
@@ -106,7 +116,7 @@ export default class Map extends Component {
                     </LocationTimeTextSmall>
                   </LocationTimeBox>
                   <LocationText>
-                    Av. Elias Mafuz
+                    {location}
                   </LocationText>
                 </LocationBox>
               </Marker>
