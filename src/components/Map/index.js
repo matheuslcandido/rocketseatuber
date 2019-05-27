@@ -6,6 +6,7 @@ import Geocoder from 'react-native-geocoding';
 
 import Search from './../Search';
 import Directions from '../Directions';
+import Details from '../Details';
 
 import markerImage from './../../assets/marker.png';
 
@@ -85,7 +86,7 @@ export default class Map extends Component {
                       right: getPixelSize(50),
                       left: getPixelSize(50),
                       top: getPixelSize(50),
-                      bottom: getPixelSize(50),
+                      bottom: getPixelSize(350),
                     }
                   });
                 }}
@@ -123,7 +124,12 @@ export default class Map extends Component {
             </Fragment>
           )}
         </MapView>
-        <Search onLocationSelected={this.handleLocationSelected} />
+
+        { destination ? (
+          <Details />
+        ) : (
+          <Search onLocationSelected={this.handleLocationSelected} />
+        )}
     </View>
     )
   }
